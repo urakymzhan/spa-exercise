@@ -1,4 +1,5 @@
 # RESTFul App
+> This is just an exercise to get my hands dirty with nodejs/expressjs | exercise for my upcoming real project
 
 ### QuickStart
 - $ npm install
@@ -22,5 +23,6 @@
 * package.json - package info for tutorial project
 
 ### Checkout other branches for different versions
-- jade migrated to pug
-- view updated with ReactJS
+- original jade version
+- pug version
+- master branch -> view completely refactored with ReactJS
