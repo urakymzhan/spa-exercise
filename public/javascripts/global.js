@@ -11,7 +11,7 @@ $(document).ready(function() {
   $('#userList table tbody').on('click', 'td a.linkshowuser', showUserInfo);
 
   // Add User button click
-  $('#btnAddUser').on('click', addUser);
+  $('#btnAddComment').on('click', addUser);
 
   // Delete User link click
   $('#userList table tbody').on('click', 'td a.linkdeleteuser', deleteUser);
@@ -31,12 +31,12 @@ function populateTable() {
 
     // Stick our user data array into a userlist variable in the global object
     userListData = data;
-
+    console.log(data);
     // For each item in our JSON, add a table row and cells to the content string
     $.each(data, function(){
       tableContent += '<tr>';
-      tableContent += '<td><a href="#" class="linkshowuser" rel="' + this.username + '" title="Show Details">' + this.username + '</a></td>';
-      tableContent += '<td>' + this.email + '</td>';
+      tableContent += '<td><a href="#" class="linkshowuser" rel="' + this.fullname + '" title="Show Details">' + this.fullname + '</a></td>';
+      tableContent += '<td>' + this.review + '</td>';
       tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">delete</a></td>';
       tableContent += '</tr>';
     });
@@ -54,13 +54,14 @@ function showUserInfo(event) {
 
   // Retrieve username from link rel attribute
   var thisUserName = $(this).attr('rel');
-
+  console.log("thisUserName: ", thisUserName);
   // Get Index of object based on id value
-  var arrayPosition = userListData.map(function(arrayItem) { return arrayItem.username; }).indexOf(thisUserName);
-
+  var arrayPosition = userListData.map(function(arrayItem) { return arrayItem.fullname; }).indexOf(thisUserName);
+  console.log("userListData: ", userListData);
+  console.log("arrayPosition: ", arrayPosition);
   // Get our User Object
   var thisUserObject = userListData[arrayPosition];
-
+  console.log("thisUserObject: ", thisUserObject);
   //Populate Info Box
   $('#userInfoName').text(thisUserObject.fullname);
   $('#userInfoAge').text(thisUserObject.age);
@@ -84,8 +85,8 @@ function addUser(event) {
 
     // If it is, compile all user info into one object
     var newUser = {
-      'username': $('#addUser fieldset input#inputUserName').val(),
-      'email': $('#addUser fieldset input#inputUserEmail').val(),
+      // 'username': $('#addUser fieldset input#inputUserName').val(),
+      'review': $('#addUser fieldset textarea#userReview').val(),
       'fullname': $('#addUser fieldset input#inputUserFullname').val(),
       'age': $('#addUser fieldset input#inputUserAge').val(),
       'location': $('#addUser fieldset input#inputUserLocation').val(),
@@ -105,6 +106,7 @@ function addUser(event) {
 
         // Clear the form inputs
         $('#addUser fieldset input').val('');
+        $('#addUser fieldset textarea').val('');
 
         // Update the table
         populateTable();
