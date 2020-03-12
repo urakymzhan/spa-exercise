@@ -135,9 +135,10 @@ function deleteUser(event) {
   // Pop up a confirmation dialog
   var confirmation = confirm('Are you sure you want to delete this user?');
 
+  // console.log($(this).attr('rel'))
+
   // Check and make sure the user confirmed
   if (confirmation === true) {
-
     // If they did, do our delete
     $.ajax({
       type: 'DELETE',

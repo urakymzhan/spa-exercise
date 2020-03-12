@@ -6,4 +6,7 @@
 -  show dbs
 - use nodetest2
 - show collections
-- db.collection1.find() // findOne()
+- db.userlist.find() // findOne()
+
+### CORS issue on server side:
+https://expressjs.com/en/resources/middleware/cors.html
